@@ -1,0 +1,3 @@
+stamina:12
+programming_skills:1
+team_spirit:0
