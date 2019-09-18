@@ -49,5 +49,13 @@ def main():
     basic_skill_vaues_list = get_basic_skills_values(basic_skills)
 
 
+def print_skills():
+    skills_open = open("skills.txt", "r")
+    skills = skills_open.readlines()
+    skills_open.close()
+    print("".join(skills))
+    return skills
+
+
 if __name__ == "__main__":
     main()
