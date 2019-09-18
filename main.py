@@ -5,8 +5,14 @@ def roll_dice():
     print(f"Your roll: {dice_result}")
     return dice_result
 
+def mainmenu():  
+    mainmenu = open("mainmenu.txt", "r")
+    return mainmenu.read()
+
+
 def main():
     Programming_skills = 1
-    roll_dice()
+    start = mainmenu()
+    print(start)
 
 main()
