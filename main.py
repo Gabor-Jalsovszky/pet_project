@@ -7,7 +7,7 @@ def roll_dice():
 
 def mainmenu():  
     mainmenu = open("mainmenu.txt", "r")
-    return mainmenu.read()
+    print(mainmenu.read())
 
 
 def main():
