@@ -12,11 +12,16 @@ def mainmenu():
     print(mainmenu.read())
 
 
-def main():
-    Programming_skills = 1
-    start = mainmenu()
-    print(start)
+def print_skills():
+    skills_open = open("skills.txt", "r")
+    skills = skills_open.readlines()
+    skills_open.close()
+    print("".join(skills))
+    return skills
 
+
+def main():
+    print_skills()
 
 if __name__ == "__main__":
     main()
