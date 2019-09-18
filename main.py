@@ -14,6 +14,9 @@ def import_basic_skills():
 
 
 def roll_dice():
+    x = 0
+    while x != "":
+        x = input("Press enter to roll: ")
     dice_result = random.randrange(1, 7)
     print(f"Your roll: {dice_result}")
     return dice_result
