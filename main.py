@@ -22,9 +22,8 @@ def get_basic_skill_values():
     starting_team_spirit = team_spirit_roll
     print(f"\nYour starting Team spirit is {starting_team_spirit}.")
     file = open("skills.txt", "w")
-    file.write(f"Programming skills: 1\n")
-    file.write(f"Stamina: {starting_stamina}\n")
-    file.write(f"Team spirit: {starting_team_spirit}\n")
+    file.write(f"Programming skills: 1\t\tStamina: {starting_stamina}\t\t\tTeam spirit: {starting_team_spirit}\n")
+    file.close()
 
 
 def story_turn_page(filename, startline):
@@ -39,9 +38,8 @@ def main():
 
 def print_skills():
     skills_open = open("skills.txt", "r")
-    skills = skills_open.readlines()
+    skills = skills_open.read()
     skills_open.close()
-    print("".join(skills))
     return skills
 
 def other_options():
@@ -62,4 +60,5 @@ def get_user_input():
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+    get_user_input()
