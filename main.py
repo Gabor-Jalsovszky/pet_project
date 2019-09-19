@@ -51,9 +51,11 @@ def modify_statpoint(skill, modifier, skillset):
     print("\n")
     if modifier == 1:
         skillset[skill] += 1
-        print(f"Nice job! Your {skill} is grown by 1.")
+        print(f"Nice job! Your {skill} has grown by 1.\n")
     elif modifier == -1:
         skillset[skill] -= 1
+        print(f"That's not very nice. Your {skill} has decreased by 1.\n")
+    print(skillset)
     return skillset
 
 def modifying(number_of_stage, user_answer, skillset):
