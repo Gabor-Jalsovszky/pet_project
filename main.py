@@ -56,44 +56,50 @@ def get_user_input():
     return user_input
 
 
-def add_statpoint(skill):
-    # here we have to write a statpoint modifier
-    print(f"Nice job! Your {skill} is grown by 1.")
+def modify_statpoint(skill, modifier, skillset):
+    print("\n")
+    if modifier == 1:
+        skillset[skill] += 1
+        print(f"Nice job! Your {skill} is grown by 1.")
+    elif modifier == -1:
+        skillset[skill] -= 1
+    return skillset
 
-
-def modifying(number_of_stage, user_answer):
+def modifying(number_of_stage, user_answer, skillset):
     if number_of_stage == 1 and user_answer == "1":
-        print("\n")
-        print("You are a nice person")
-        # add_statpoint(skill)
+        skillset = modify_statpoint("Team spirit", 1, skillset)
     elif number_of_stage == 2 and user_answer == "2":
-        # add_statpoint(skill)
+        # modify_statpoint()
         pass
+    return skillset
 
 
-def start_chapter(number_of_stage, stagedata_dictonary):
+def start_chapter(number_of_stage, stagedata_dictonary, skillset):
     startline = (stagedata_dictonary.get(number_of_stage)[0]) 
     print("\n")
     print(story_turn_page("story.txt", number_of_stage))
     user_answer = get_user_input()
 
     if user_answer == "1":
-        modifying(number_of_stage, user_answer)
+        skillset = modifying(number_of_stage, user_answer, skillset)
     elif user_answer == "2":
-        modifying(number_of_stage, user_answer)
+        skillset = modifying(number_of_stage, user_answer, skillset)
+    return skillset
 
-def start_game():
+def start_game(skillset):
     stages = {1 : (1, 2),
         2 : (3, 4),
         3: ("startline", "start_of_choice")}
     story_turn_page("story.txt", 1)
     for stage_number in stages.keys():
-        start_chapter(stage_number, stages)
-
+        skillset = start_chapter(stage_number, stages, skillset)
+    return skillset
 
 def main():
     player_skillset = get_basic_skill_values()
-    start_game()
+    print(player_skillset)
+    player_skillset = start_game(player_skillset)
+    print(player_skillset)
 
 if __name__ == "__main__":
     main()
