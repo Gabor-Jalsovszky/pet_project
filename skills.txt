@@ -1,1 +1,3 @@
-Programming skills: 1		Stamina: 14			Team spirit: 5
+Programming skills: 1
+Stamina: 20
+Team spirit: 2
