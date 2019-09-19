@@ -1,18 +1,6 @@
 import random
 
 
-def set_basic_skills():
-    update_stamina = roll_dice()
-    update_team_spirit = roll_dice()
-
-
-def import_basic_skills():
-    skills = "skills.txt"
-    basic_skills = open(skills, "r")
-    return basic_skills
-    basic_skills.close()
-
-
 def roll_dice():
     x = 0
     while x != "":
@@ -27,29 +15,31 @@ def mainmenu():
     print(mainmenu.read())
 
 
-def get_basic_skills_values(basic_skills_file):
-    starting_skillset = basic_skills_file.readlines()
-    print(starting_skillset)
-    for item in starting_skillset:
-        skillset_to_split = (starting_skillset[item]).split(':')
-    skill_values = []
-    item_counter = -1
-    index_of_stamina = 1
-    index_of_programming_skills = 3
-    index_of_team_spirit = 5
-    for item in skillset_to_split:
-        item_counter += 1
-        if item_counter == index_of_stamina or item_counter == index_of_programming_skills or item_counter == index_of_team_spirit:
-            skill_values.append(item)
-    return skill_values
+def get_basic_skills_values():
+    print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
+    print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
+    first_roll = roll_dice()
+    second_roll = roll_dice()
+    starting_stamina = first_roll + second_roll + 12
+    print(f"\nYour starting Stamina is {starting_stamina}.\n")
+    print("To set your starting Team spirit, you have to roll once.\n")
+    team_spirit_roll = roll_dice()
+    starting_team_spirit = team_spirit_roll
+    print(f"\nYour starting Team spirit is {starting_team_spirit}.")
+    file = open("skills.txt", "w")
+    file.write(f"Programming skills: 1\n")
+    file.write(f"Stamina: {starting_stamina}\n")
+    file.write(f"Team spirit: {starting_team_spirit}\n")
 
 
 def main():
-    Programming_skills = 1
-    start = mainmenu()
-    print(start)
-    basic_skills = import_basic_skills()
-    basic_skill_vaues_list = get_basic_skills_values(basic_skills)
+    # start = mainmenu()
+    # print(start)
+    # basic_skills = import_basic_skills()
+    # basic_skill_vaues_list = get_basic_skills_values(basic_skills)
+    # get_basic_skills_values()
+    print_skills()
+
 
 
 def print_skills():
