@@ -24,6 +24,7 @@ def get_basic_skill_values():
     skillset = {"Programming skills" : 1, "Stamina" : starting_stamina, "Team spirit" : starting_team_spirit}
     return skillset
 
+
 def story_turn_page(filename, startline, skillset):
     file = open(filename, "r")
     lines = file.readlines()
@@ -58,12 +59,16 @@ def modify_statpoint(skill, modifier, skillset):
     print(skillset)
     return skillset
 
+
 def modifying(number_of_stage, user_answer, skillset):
     if number_of_stage == 1 and user_answer == "1":
         skillset = modify_statpoint("Team spirit", 1, skillset)
+    elif number_of_stage == 1 and user_answer == "2":
+        skillset = modify_statpoint("Team spirit", -1, skillset)
+    if number_of_stage == 2 and user_answer == "1":
+        skillset = modify_statpoint("Programming skills", 1, skillset)
     elif number_of_stage == 2 and user_answer == "2":
-        # modify_statpoint()
-        pass
+        skillset = modify_statpoint("Programming skills", -1, skillset)
     return skillset
 
 
@@ -79,6 +84,7 @@ def start_chapter(number_of_stage, stagedata_dictonary, skillset):
         skillset = modifying(number_of_stage, user_answer, skillset)
     return skillset
 
+
 def start_game(skillset):
     stages = {1 : (1, 2),
         2 : (3, 4),
@@ -88,9 +94,11 @@ def start_game(skillset):
         skillset = start_chapter(stage_number, stages, skillset)
     return skillset
 
+
 def main():
     player_skillset = get_basic_skill_values()
     player_skillset = start_game(player_skillset)
+
 
 if __name__ == "__main__":
     main()
