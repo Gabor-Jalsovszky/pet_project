@@ -21,19 +21,22 @@ def get_basic_skill_values():
     team_spirit_roll = roll_dice()
     starting_team_spirit = team_spirit_roll
     print(f"\nYour starting Team spirit is {starting_team_spirit}.")
-    file = open("skills.txt", "w")
-    file.write(f"Programming skills: 1\t\tStamina: {starting_stamina}\t\t\tTeam spirit: {starting_team_spirit}\n")
-    file.close()
-
+    skillset = {"Programming skills" : 1, "Stamina" : starting_stamina, "Team spirit" : starting_team_spirit}
+    # file = open("skills.txt", "w")
+    # file.write(f"Programming skills: 1\t\tStamina: {starting_stamina}\t\t\tTeam spirit: {starting_team_spirit}\n")
+    # file.close()
+    return skillset
 
 def story_turn_page(filename, startline):
+    print(print_skills())
     file = open(filename, "r")
     lines = file.readlines()
     return lines[startline - 1]
 
 
 def main():
-    get_basic_skill_values()
+    player_skillset = get_basic_skill_values()
+    print(player_skillset)
 
 
 def print_skills():
@@ -42,6 +45,7 @@ def print_skills():
     skills_open.close()
     return skills
 
+
 def other_options():
     print(print_skills())
     print("To do a dojo excercise, press 1.")
@@ -49,6 +53,7 @@ def other_options():
     print("To try passing the Progbasics PA, press 3.")
     user_input = input("Enter 1, 2 or 3: ")
     return user_input
+
 
 def get_user_input():
     print(print_skills())
@@ -60,5 +65,4 @@ def get_user_input():
 
 
 if __name__ == "__main__":
-    #main()
-    get_user_input()
+    main()
