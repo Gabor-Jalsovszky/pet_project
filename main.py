@@ -37,8 +37,8 @@ def main():
     # print(start)
     # basic_skills = import_basic_skills()
     # basic_skill_vaues_list = get_basic_skills_values(basic_skills)
-    # get_basic_skills_values()
-    print_skills()
+    get_basic_skills_values()
+    # print_skills()
 
 
 
