@@ -28,15 +28,9 @@ def get_basic_skill_values():
     return skillset
 
 def story_turn_page(filename, startline):
-    print(print_skills())
     file = open(filename, "r")
     lines = file.readlines()
     return lines[startline - 1]
-
-
-def main():
-    player_skillset = get_basic_skill_values()
-    print(player_skillset)
 
 
 def print_skills():
@@ -47,7 +41,6 @@ def print_skills():
 
 
 def other_options():
-    print(print_skills())
     print("To do a dojo excercise, press 1.")
     print("To start working on a project, press 2.")
     print("To try passing the Progbasics PA, press 3.")
@@ -56,13 +49,53 @@ def other_options():
 
 
 def get_user_input():
-    print(print_skills())
     print("If your answer is yes, press 1.")
     print("If your answer is no, press 2.")
     print("For other options, press 3.")
     user_input = input("Enter 1, 2 or 3: ")
     return user_input
 
+
+def add_statpoint(skill):
+    # here we have to write a statpoint modifier
+    print(f"Nice job! Your {skill} is grown by 1.")
+
+
+def modifying(number_of_chapter, user_answer):
+    if number_of_chapter == 1 and user_answer == "1":
+        print("You are a nice person")
+        # add_statpoint(skill)
+    elif number_of_chapter == 2 and user_answer == "2":
+        # add_statpoint(skill)
+        pass
+
+
+def start_chapter(number_of_chapter, stagedata_dictonary):
+    startline = (stagedata_dictonary.get(number_of_chapter)[0]) 
+    startline_choice = (stagedata_dictonary.get(number_of_chapter)[1])
+    print("\n")
+    print(story_turn_page("story.txt", number_of_chapter))
+    user_answer = get_user_input()
+
+    if user_answer == "1":
+        story_turn_page("story.txt", startline_choice)
+        modifying(number_of_chapter, user_answer)
+    elif user_answer == "2":
+        story_turn_page("story.txt", startline_choice)
+        modifying(number_of_chapter)
+
+def start_game():
+    stages = {1 : (1, 2),
+        2 : (3, 4),
+        3: ("startline", "start_of_choice")}
+    story_turn_page("story.txt", 1)
+    for stage_number in stages.keys():
+        start_chapter(stage_number, stages)
+
+
+def main():
+    player_skillset = get_basic_skill_values()
+    start_game()
 
 if __name__ == "__main__":
     main()
