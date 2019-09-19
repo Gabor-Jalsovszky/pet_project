@@ -10,7 +10,7 @@ def roll_dice():
     return dice_result
 
 
-def get_basic_skills_values():
+def get_basic_skill_values():
     print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
     print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
     first_roll = roll_dice()
@@ -22,35 +22,43 @@ def get_basic_skills_values():
     starting_team_spirit = team_spirit_roll
     print(f"\nYour starting Team spirit is {starting_team_spirit}.")
     file = open("skills.txt", "w")
-    file.write(f"Programming skills: 1\n")
-    file.write(f"Stamina: {starting_stamina}\n")
-    file.write(f"Team spirit: {starting_team_spirit}\n")
+    file.write(f"Programming skills: 1\t\tStamina: {starting_stamina}\t\t\tTeam spirit: {starting_team_spirit}\n")
+    file.close()
 
 
 def story_turn_page(filename, startline):
     file = open(filename, "r")
     lines = file.readlines()
-    return lines[startline -1]
+    return lines[startline - 1]
 
 
 def main():
-
-    # start = mainmenu()
-    # print(start)
-    # basic_skills = import_basic_skills()
-    # basic_skill_vaues_list = get_basic_skills_values(basic_skills)
-    get_basic_skills_values()
-    # print_skills()
-
+    get_basic_skill_values()
 
 
 def print_skills():
     skills_open = open("skills.txt", "r")
-    skills = skills_open.readlines()
+    skills = skills_open.read()
     skills_open.close()
-    print("".join(skills))
     return skills
+
+def other_options():
+    print(print_skills())
+    print("To do a dojo excercise, press 1.")
+    print("To start working on a project, press 2.")
+    print("To try passing the Progbasics PA, press 3.")
+    user_input = input("Enter 1, 2 or 3: ")
+    return user_input
+
+def get_user_input():
+    print(print_skills())
+    print("If your answer is yes, press 1.")
+    print("If your answer is no, press 2.")
+    print("For other options, press 3.")
+    user_input = input("Enter 1, 2 or 3: ")
+    return user_input
 
 
 if __name__ == "__main__":
-    main()
+    #main()
+    get_user_input()
