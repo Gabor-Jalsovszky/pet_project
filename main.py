@@ -61,28 +61,26 @@ def add_statpoint(skill):
     print(f"Nice job! Your {skill} is grown by 1.")
 
 
-def modifying(number_of_chapter, user_answer):
-    if number_of_chapter == 1 and user_answer == "1":
+def modifying(number_of_stage, user_answer):
+    if number_of_stage == 1 and user_answer == "1":
+        print("\n")
         print("You are a nice person")
         # add_statpoint(skill)
-    elif number_of_chapter == 2 and user_answer == "2":
+    elif number_of_stage == 2 and user_answer == "2":
         # add_statpoint(skill)
         pass
 
 
-def start_chapter(number_of_chapter, stagedata_dictonary):
-    startline = (stagedata_dictonary.get(number_of_chapter)[0]) 
-    startline_choice = (stagedata_dictonary.get(number_of_chapter)[1])
+def start_chapter(number_of_stage, stagedata_dictonary):
+    startline = (stagedata_dictonary.get(number_of_stage)[0]) 
     print("\n")
-    print(story_turn_page("story.txt", number_of_chapter))
+    print(story_turn_page("story.txt", number_of_stage))
     user_answer = get_user_input()
 
     if user_answer == "1":
-        story_turn_page("story.txt", startline_choice)
-        modifying(number_of_chapter, user_answer)
+        modifying(number_of_stage, user_answer)
     elif user_answer == "2":
-        story_turn_page("story.txt", startline_choice)
-        modifying(number_of_chapter)
+        modifying(number_of_stage, user_answer)
 
 def start_game():
     stages = {1 : (1, 2),
