@@ -10,11 +10,6 @@ def roll_dice():
     return dice_result
 
 
-def mainmenu():
-    mainmenu = open("mainmenu.txt", "r")
-    print(mainmenu.read())
-
-
 def get_basic_skills_values():
     print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
     print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
@@ -32,13 +27,16 @@ def get_basic_skills_values():
     file.write(f"Team spirit: {starting_team_spirit}\n")
 
 
+def story_turn_page(filename, startline):
+    file = open(filename, "r")
+    lines = file.readlines()
+    return lines[startline -1]
+
+
 def main():
-    # start = mainmenu()
-    # print(start)
-    # basic_skills = import_basic_skills()
-    # basic_skill_vaues_list = get_basic_skills_values(basic_skills)
     # get_basic_skills_values()
-    print_skills()
+    #print_skills()
+    print(story_turn_page("story.txt", 2))
 
 
 
