@@ -34,9 +34,13 @@ def story_turn_page(filename, startline):
 
 
 def main():
-    # get_basic_skills_values()
-    #print_skills()
-    print(story_turn_page("story.txt", 2))
+
+    # start = mainmenu()
+    # print(start)
+    # basic_skills = import_basic_skills()
+    # basic_skill_vaues_list = get_basic_skills_values(basic_skills)
+    get_basic_skills_values()
+    # print_skills()
 
 
 
