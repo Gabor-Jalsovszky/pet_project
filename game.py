@@ -5,7 +5,7 @@ def roll_dice():
     while x != "":
         x = input("Press enter to roll: ")
     dice_result = random.randrange(1, 7)
-    print(f"Your roll: {dice_result}")
+    delay_print(f"Your roll: {dice_result}")
     return dice_result
 
 
@@ -15,16 +15,16 @@ def get_user_input():
 
 
 def get_basic_skills_values():
-    print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
-    print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
+    delay_print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
+    delay_print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
     first_roll = roll_dice()
     second_roll = roll_dice()
     starting_stamina = first_roll + second_roll + 12
-    print(f"\nYour starting Stamina is {starting_stamina}.\n")
-    print("To set your starting Team spirit, you have to roll once.\n")
+    delay_print(f"\nYour starting Stamina is {starting_stamina}.\n")
+    delay_print("To set your starting Team spirit, you have to roll once.\n")
     team_spirit_roll = roll_dice()
     starting_team_spirit = team_spirit_roll
-    print(f"\nYour starting Team spirit is {starting_team_spirit}.")
+    delay_print(f"\nYour starting Team spirit is {starting_team_spirit}.")
     file = open("skills.txt", "w")
     file.write(f"Programming skills: 1\n")
     file.write(f"Stamina: {starting_stamina}\n")
@@ -39,12 +39,12 @@ def story_turn_page(filename, startline):
 
 def add_statpoint(skill):
     # here we have to write a statpoint modifier
-    print(f"Nice job! Your {skill} is grown by 1.")
+    delay_print(f"Nice job! Your {skill} is grown by 1.")
 
 
 def modifying(number_of_chapter, user_answer):
     if number_of_chapter == 1 and user_answer == "1":
-        print("You are a nice person")
+        delay_print("You are a nice person")
         # add_statpoint(skill)
     elif number_of_chapter == 2 and user_answer == "2":
         # add_statpoint(skill)
@@ -54,8 +54,8 @@ def modifying(number_of_chapter, user_answer):
 def start_chapter(number_of_chapter, stagedata_dictonary):
     startline = (stagedata_dictonary.get(number_of_chapter)[0]) 
     startline_choice = (stagedata_dictonary.get(number_of_chapter)[1])
-    print("\n")
-    print(story_turn_page("story.txt", number_of_chapter))
+    delay_print("\n")
+    delay_print(story_turn_page("story.txt", number_of_chapter))
     user_answer = get_user_input()
 
     if user_answer == "1":

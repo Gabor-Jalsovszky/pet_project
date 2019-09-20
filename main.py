@@ -6,9 +6,9 @@ import sys
 
 clear = lambda: os.system('clear')
 
-def delay_print(s):
-    for c in s:
-        sys.stdout.write(c)
+def delay_print(string_to_print):
+    for character in string_to_print:
+        sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.025)
     print("\n")
