@@ -29,15 +29,16 @@ def roll_dice():
 
 
 def get_basic_skill_values():
-    print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
-    print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
+
+    delay_print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
+    delay_print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
     first_roll = roll_dice()
     clear()
     second_roll = roll_dice()
     clear()
     starting_stamina = first_roll + second_roll + 12
-    print(f"\nYour starting Stamina is {starting_stamina}.\n")
-    print("To set your starting Team spirit, you have to roll once.\n")
+    delay_print(f"\nYour starting Stamina is {starting_stamina}.\n")
+    delay_print("To set your starting Team spirit, you have to roll once.\n")
     team_spirit_roll = roll_dice()
     clear()
     starting_team_spirit = team_spirit_roll
