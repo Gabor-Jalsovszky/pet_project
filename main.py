@@ -75,12 +75,12 @@ def modify_statpoint(skill, modifier, skillset):
     print("\n")
     if modifier == 1:
         skillset[skill] += 1
-        delay_print(f"Nice job! Your {skill} has grown by 1.\n")
+        delay_print(f"Nice job! Your {skill} will increase by 1.\n")
         time.sleep(4)
         clear()
     elif modifier == -1:
         skillset[skill] -= 1
-        delay_print(f"That's not very nice. Your {skill} has decreased by 1.\n")
+        delay_print(f"That's not very nice. Your {skill} will decrease by 1.\n")
         time.sleep(4)
         clear()
     show_stats(skillset)
