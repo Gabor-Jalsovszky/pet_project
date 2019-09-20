@@ -1,10 +1,17 @@
 import random
 import os
 import time
+import sys
 
 
 clear = lambda: os.system('clear')
 
+def delay_print(s):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.025)
+    print("\n")
 
 def show_stats(skillset):
     for key, value in skillset.items():
@@ -56,9 +63,9 @@ def other_options():
 
 
 def get_user_input():
-    print("If your answer is yes, press 1.")
-    print("If your answer is no, press 2.")
-    print("For other options, press 3.")
+    delay_print("If your answer is Yes, press 1.")
+    delay_print("If your answer is No, press 2.")
+    delay_print("For other options, press 3.")
     user_input = input("Enter 1, 2 or 3: ")
     return user_input
 
@@ -67,12 +74,12 @@ def modify_statpoint(skill, modifier, skillset):
     print("\n")
     if modifier == 1:
         skillset[skill] += 1
-        print(f"Nice job! Your {skill} has grown by 1.\n")
+        delay_print(f"Nice job! Your {skill} has grown by 1.\n")
         time.sleep(4)
         clear()
     elif modifier == -1:
         skillset[skill] -= 1
-        print(f"That's not very nice. Your {skill} has decreased by 1.\n")
+        delay_print(f"That's not very nice. Your {skill} has decreased by 1.\n")
         time.sleep(4)
         clear()
     show_stats(skillset)
@@ -88,13 +95,22 @@ def modifying(number_of_stage, user_answer, skillset):
         skillset = modify_statpoint("Programming skills", 1, skillset)
     elif number_of_stage == 2 and user_answer == "2":
         skillset = modify_statpoint("Programming skills", -1, skillset)
+    if number_of_stage == 3 and user_answer == "1":
+        skillset = modify_statpoint("Team spirit", 1, skillset)
+        skillset = modify_statpoint("Stamina", 1, skillset)
+    elif number_of_stage == 3 and user_answer == "2":
+        skillset = modify_statpoint("Team spirit", -1, skillset)
+    if number_of_stage == 4 and user_answer == "1":
+        skillset = modify_statpoint("Programming skills", 1, skillset)
+    elif number_of_stage == 4 and user_answer == "2":
+        print(f"You should have shaprened your skills in Python!")
     return skillset
 
 
 def start_chapter(number_of_stage, stagedata_dictonary, skillset):
     startline = (stagedata_dictonary.get(number_of_stage)[0]) 
     print("\n")
-    print(story_turn_page("story.txt", number_of_stage, skillset))
+    delay_print(story_turn_page("story.txt", number_of_stage, skillset))
     user_answer = get_user_input()
     time.sleep(1)
 
@@ -108,7 +124,8 @@ def start_chapter(number_of_stage, stagedata_dictonary, skillset):
 def start_game(skillset):
     stages = {1 : (1, 2),
         2 : (3, 4),
-        3: ("startline", "start_of_choice")}
+        3: (4, 6),
+        4: (5, 8)}
     story_turn_page("story.txt", 1, skillset)
     for stage_number in stages.keys():
         skillset = start_chapter(stage_number, stages, skillset)
