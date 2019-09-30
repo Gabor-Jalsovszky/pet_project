@@ -54,11 +54,11 @@ def story_turn_page(filename, startline, skillset):
     return lines[startline - 1]
 
 
-def other_options():
-    print("To do a dojo excercise, press 1.")
-    print("To start working on a project, press 2.")
-    print("To try passing the Progbasics PA, press 3.")
-    print("To check your skillset, press 4.")
+def other_options(skillset):
+    delay_print("To do a dojo excercise, press 1.")
+    delay_print("To start working on a project, press 2.")
+    delay_print("To try passing the Progbasics PA, press 3.")
+    delay_print("To check your skillset, press 4.")
     user_input = input("Enter 1, 2, 3 or 4: ")
     return user_input
 
@@ -124,6 +124,8 @@ def start_chapter(number_of_stage, stagedata_dictonary, skillset):
         skillset = modifying(number_of_stage, user_answer, skillset)
     elif user_answer == "2":
         skillset = modifying(number_of_stage, user_answer, skillset)
+    elif user_answer == "3":
+        other_options(skillset)
     return skillset
 
 
