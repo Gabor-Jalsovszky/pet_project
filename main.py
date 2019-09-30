@@ -54,13 +54,19 @@ def story_turn_page(filename, startline, skillset):
     return lines[startline - 1]
 
 
-def other_options(skillset):
+def other_options(skillset, number_of_stage):
+    clear_screen()
     delay_print("To do a dojo excercise, press 1.")
     delay_print("To start working on a project, press 2.")
     delay_print("To try passing the Progbasics PA, press 3.")
     delay_print("To check your skillset, press 4.")
     user_input = input("Enter 1, 2, 3 or 4: ")
-    return user_input
+    if user_input == "1":
+        stamina_check = skills_check(skillset, "Stamina", 14)
+        if stamina_check == "True":
+            skillset = modify_statpoint("Programming skills", 1, skillset)
+            skillset = modify_statpoint("Stamina", -1, skillset)
+    return skillset
 
 
 def get_user_input():
@@ -110,11 +116,12 @@ def modifying(number_of_stage, user_answer, skillset):
         skillset = modify_statpoint("Programming skills", 1, skillset)
     elif number_of_stage == 4 and user_answer == "2":
         print(f"You should have shaprened your skills in Python!")
+    #elif number_of_stage == 99
     return skillset
 
 
-def start_chapter(number_of_stage, stagedata_dictonary, skillset):
-    startline = (stagedata_dictonary.get(number_of_stage)[0]) 
+def start_chapter(number_of_stage, stagedata, skillset):
+    startline = (stagedata[number_of_stage - 1]) 
     print("\n")
     delay_print(story_turn_page("story.txt", number_of_stage, skillset))
     user_answer = get_user_input()
@@ -125,17 +132,14 @@ def start_chapter(number_of_stage, stagedata_dictonary, skillset):
     elif user_answer == "2":
         skillset = modifying(number_of_stage, user_answer, skillset)
     elif user_answer == "3":
-        other_options(skillset)
+        skillset = other_options(skillset, number_of_stage - 1)
     return skillset
 
 
 def start_game(skillset):
-    stages = {1 : (1, 2),
-        2 : (3, 4),
-        3: (4, 6),
-        4: (5, 8)}
+    stages = [1, 2, 3, 4]
     story_turn_page("story.txt", 1, skillset)
-    for stage_number in stages.keys():
+    for stage_number in stages:
         skillset = start_chapter(stage_number, stages, skillset)
     return skillset
 
