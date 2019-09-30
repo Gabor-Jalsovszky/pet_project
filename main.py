@@ -3,8 +3,8 @@ import os
 import time
 import sys
 
-
-clear = lambda: os.system('clear')
+def clear_screen():
+    os.system('clear')
 
 def delay_print(string_to_print):
     for character in string_to_print:
@@ -33,14 +33,14 @@ def get_basic_skill_values():
     delay_print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
     delay_print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
     first_roll = roll_dice()
-    clear()
+    clear_screen()
     second_roll = roll_dice()
-    clear()
+    clear_screen()
     starting_stamina = first_roll + second_roll + 12
     delay_print(f"\nYour starting Stamina is {starting_stamina}.\n")
     delay_print("To set your starting Team spirit, you have to roll once.\n")
     team_spirit_roll = roll_dice()
-    clear()
+    clear_screen()
     starting_team_spirit = team_spirit_roll
     skillset = {"Programming skills" : 1, "Stamina" : starting_stamina, "Team spirit" : starting_team_spirit}
     show_stats(skillset)
@@ -69,7 +69,7 @@ def get_user_input():
     RED = '\033[0;31m'
     CYAN = '\033[0;36m'
 
-    delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN}1 {WHITE}.")
+    delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN}1{WHITE}.")
     delay_print(f"If your answer is {RED}No{WHITE}, press {RED}2{WHITE}.")
     delay_print(f"For other options, press {CYAN}3{WHITE}.")
     user_input = input("Enter 1, 2 or 3: ")
@@ -82,12 +82,12 @@ def modify_statpoint(skill, modifier, skillset):
         skillset[skill] += 1
         delay_print(f"Nice job! Your {skill} will increase by 1.\n")
         time.sleep(4)
-        clear()
+        clear_screen()
     elif modifier == -1:
         skillset[skill] -= 1
         delay_print(f"That's not very nice. Your {skill} will decrease by 1.\n")
         time.sleep(4)
-        clear()
+        clear_screen()
     show_stats(skillset)
     return skillset
 
@@ -140,7 +140,7 @@ def start_game(skillset):
 
 def main():
     player_skillset = get_basic_skill_values()
-    clear()
+    clear_screen()
     player_skillset = start_game(player_skillset)
 
 
