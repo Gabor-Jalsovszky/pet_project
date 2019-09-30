@@ -10,7 +10,7 @@ def delay_print(string_to_print):
     for character in string_to_print:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.025)
+        time.sleep(0.015)
     print("\n")
 
 def show_stats(skillset):
@@ -64,9 +64,14 @@ def other_options():
 
 
 def get_user_input():
-    delay_print("If your answer is Yes, press 1.")
-    delay_print("If your answer is No, press 2.")
-    delay_print("For other options, press 3.")
+    GREEN = '\033[0;32m'
+    WHITE = '\033[0;37m'
+    RED = '\033[0;31m'
+    CYAN = '\033[0;36m'
+
+    delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN}1 {WHITE}.")
+    delay_print(f"If your answer is {RED}No{WHITE}, press {RED}2{WHITE}.")
+    delay_print(f"For other options, press {CYAN}3{WHITE}.")
     user_input = input("Enter 1, 2 or 3: ")
     return user_input
 
