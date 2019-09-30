@@ -133,6 +133,13 @@ def start_game(skillset):
     return skillset
 
 
+def skills_check(skillset, required_skill, required_min_skill):
+    if skillset[required_skill] >= required_min_skill:
+        return True
+    elif skillset[required_skill] < required_min_skill:
+        return False
+
+
 def main():
     player_skillset = get_basic_skill_values()
     clear()
