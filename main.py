@@ -70,14 +70,11 @@ def get_basic_skill_values():
     delay_print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
     delay_print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
     first_roll = roll_dice()
-    clear_screen()
     second_roll = roll_dice()
-    clear_screen()
     starting_stamina = first_roll + second_roll + 12
     delay_print(f"\nYour starting Stamina is {starting_stamina}.\n")
     delay_print("To set your starting Team spirit, you have to roll once.\n")
     team_spirit_roll = roll_dice()
-    clear_screen()
     starting_team_spirit = team_spirit_roll
     skillset = {"Programming skills" : 1, "Stamina" : starting_stamina, "Team spirit" : starting_team_spirit}
     show_stats(skillset)
@@ -91,20 +88,27 @@ def story_turn_page(filename, startline, skillset):
     return lines[startline - 1]
 
 
-def other_options(skillset, number_of_stage):
+def other_options(skillset, number_of_stage, stagedata):
     clear_screen()
     delay_print("To do a dojo excercise, press 1.")
     delay_print("To start working on a project, press 2.")
     delay_print("To try passing the Progbasics PA, press 3.")
     user_input = input("Enter 1, 2, 3 or 4: ")
     if user_input == "1":
-        stamina_check = skills_check(skillset, "Stamina", 34)
+        stamina_check = skills_check(skillset, "Stamina", 14)
         if stamina_check == True:
-            skillset = modify_statpoint("Programming skills", 1, skillset)
-            skillset = modify_statpoint("Stamina", -1, skillset)
+            skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+            skillset = modify_statpoint("Stamina", -1, -1, skillset)
         else:
-            print("Your Stamina is too low. Try to increase it (have a coffee", end="")
-            print("or do some excercise) before you do a Dojo!")
+            delay_print("Your Stamina is too low. Try to increase it (have a coffee", end="")
+            delay_print(" or do some excercise) before you do a Dojo!")
+            time.sleep(5)
+    elif user_input == "2":
+        team_spirit_check = skills_check(skillset, "Team spirit", 1)
+        if team_spirit_check == True:
+            skillset = modify_statpoint("Programming skills", 1, 3, skillset)
+    clear_screen()
+    start_chapter(number_of_stage, stagedata, skillset)
     return skillset
 
 
@@ -121,16 +125,16 @@ def get_user_input():
     return user_input
 
 
-def modify_statpoint(skill, modifier, skillset):
+def modify_statpoint(skill, modifier, amount, skillset):
     print("\n")
     if modifier == 1:
-        skillset[skill] += 1
-        delay_print(f"Nice job! Your {skill} will increase by 1.\n")
+        skillset[skill] += amount
+        delay_print(f"Nice job! Your {skill} will increase by {amount}.\n")
         time.sleep(4)
         clear_screen()
     elif modifier == -1:
-        skillset[skill] -= 1
-        delay_print(f"That's not very nice. Your {skill} will decrease by 1.\n")
+        skillset[skill] -= amount
+        delay_print(f"That's not very nice. Your {skill} will decrease by {amount}.\n")
         time.sleep(4)
         clear_screen()
     show_stats(skillset)
@@ -139,20 +143,20 @@ def modify_statpoint(skill, modifier, skillset):
 
 def modifying(number_of_stage, user_answer, skillset):
     if number_of_stage == 1 and user_answer == "1":
-        skillset = modify_statpoint("Team spirit", 1, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
     elif number_of_stage == 1 and user_answer == "2":
-        skillset = modify_statpoint("Team spirit", -1, skillset)
+        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
     if number_of_stage == 2 and user_answer == "1":
-        skillset = modify_statpoint("Programming skills", 1, skillset)
+        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
     elif number_of_stage == 2 and user_answer == "2":
-        skillset = modify_statpoint("Programming skills", -1, skillset)
+        skillset = modify_statpoint("Programming skills", -1, -1, skillset)
     if number_of_stage == 3 and user_answer == "1":
-        skillset = modify_statpoint("Team spirit", 1, skillset)
-        skillset = modify_statpoint("Stamina", 1, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+        skillset = modify_statpoint("Stamina", 1, 1, skillset)
     elif number_of_stage == 3 and user_answer == "2":
-        skillset = modify_statpoint("Team spirit", -1, skillset)
+        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
     if number_of_stage == 4 and user_answer == "1":
-        skillset = modify_statpoint("Programming skills", 1, skillset)
+        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
     elif number_of_stage == 4 and user_answer == "2":
         print(f"You should have shaprened your skills in Python!")
     return skillset
@@ -170,7 +174,7 @@ def start_chapter(number_of_stage, stagedata, skillset):
     elif user_answer == "2":
         skillset = modifying(number_of_stage, user_answer, skillset)
     elif user_answer == "3":
-        skillset = other_options(skillset, number_of_stage - 1)
+        skillset = other_options(skillset, number_of_stage, stagedata)
     return skillset
 
 
