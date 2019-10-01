@@ -63,7 +63,7 @@ def other_options(skillset, number_of_stage):
     user_input = input("Enter 1, 2, 3 or 4: ")
     if user_input == "1":
         stamina_check = skills_check(skillset, "Stamina", 14)
-        if stamina_check == "True":
+        if stamina_check == True:
             skillset = modify_statpoint("Programming skills", 1, skillset)
             skillset = modify_statpoint("Stamina", -1, skillset)
     return skillset
