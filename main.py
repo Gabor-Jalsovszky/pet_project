@@ -21,6 +21,29 @@ def try_pa(skillset):
         delay_print("Your programming skills are not good enough ... Yet \033[0;37m")
         time.sleep(3)
 
+def do_dojo(skillset):
+    stamina_check = skills_check(skillset, "Stamina", 14)
+    if stamina_check == True:
+        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+        skillset = modify_statpoint("Stamina", -1, -1, skillset)
+    else:
+        delay_print("Your Stamina is too low. Try to increase it (have a coffee", end="")
+        delay_print(" or do some excercise) before you do a Dojo!")
+        time.sleep(5)
+    return skillset
+
+
+def work_on_project(skillset):
+    team_spirit_check = skills_check(skillset, "Team spirit", 1)
+    if team_spirit_check == True:
+        skillset = modify_statpoint("Programming skills", 1, 3, skillset)
+    else:
+        delay_print("\nYou need friends to work on a project!")
+        delay_print("Try to be more social to boost your team spirit!")
+        time.sleep(4)
+    clear_screen()
+    return skillset
+
 
 def print_instuctions(instruction_file):
     clear_screen()
@@ -112,23 +135,9 @@ def other_options(skillset, number_of_stage, stagedata):
     delay_print("To try passing the Progbasics PA, press 3.")
     user_input = input("Enter 1, 2, 3 or 4: ")
     if user_input == "1":
-        stamina_check = skills_check(skillset, "Stamina", 14)
-        if stamina_check == True:
-            skillset = modify_statpoint("Programming skills", 1, 1, skillset)
-            skillset = modify_statpoint("Stamina", -1, -1, skillset)
-        else:
-            delay_print("Your Stamina is too low. Try to increase it (have a coffee", end="")
-            delay_print(" or do some excercise) before you do a Dojo!")
-            time.sleep(5)
+        skillset = do_dojo(skillset)
     elif user_input == "2":
-        team_spirit_check = skills_check(skillset, "Team spirit", 7)
-        if team_spirit_check == True:
-            skillset = modify_statpoint("Programming skills", 1, 3, skillset)
-        else:
-            delay_print("\nYou need friends to work on a project!")
-            delay_print("Try to be more social to boost your team spirit!")
-            time.sleep(4)
-        clear_screen()
+        skillset = work_on_project(skillset)
     if user_input == "3":
         try_pa(skillset)
 
