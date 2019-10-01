@@ -4,6 +4,20 @@ import time
 import sys
 import getch
 
+def try_pa(skillset):
+    skill_check = skills_check(skillset, "Programming skills", 2)
+    clear_screen()
+    if skill_check == True:
+        with open("winning_page.txt") as picture:
+            for line in picture:
+                print(line, end="")
+        time.sleep(5)
+        exit()
+    elif skill_check == False:
+        delay_print("\033[11;31mYou are not prepared\033[0;37m")
+        time.sleep(2)
+
+
 def print_instuctions(instruction_file):
     clear_screen()
     with open(instruction_file) as picture:
@@ -13,7 +27,6 @@ def print_instuctions(instruction_file):
     if return_sign == "":
         printing_menu()
     
-
 
 def print_welcome_picture(file_to_print):
     with open(file_to_print) as picture:
@@ -103,7 +116,11 @@ def other_options(skillset, number_of_stage, stagedata):
         if stamina_check == True:
             skillset = modify_statpoint("Programming skills", 1, skillset)
             skillset = modify_statpoint("Stamina", -1, skillset)
-            clear_screen()
+        else:
+            print("\033[1;31mYou are not prepared\033[0;37m")
+        clear_screen()
+    if user_input == "3":
+        try_pa(skillset)
     start_chapter(number_of_stage, stagedata, skillset)
     return skillset
 
@@ -132,6 +149,7 @@ def modify_statpoint(skill, modifier, skillset):
         delay_print(f"Your {skill} will decrease by 1.\n")
         time.sleep(2)
     show_stats(skillset)
+    time.sleep(1)
     return skillset
 
 
@@ -160,7 +178,6 @@ def modifying(number_of_stage, user_answer, skillset):
 def start_chapter(number_of_stage, stagedata, skillset):
     startline = (stagedata[number_of_stage - 1]) 
     print("\n")
-    time.sleep(3)
     clear_screen()
     delay_print(story_turn_page("story.txt", number_of_stage, skillset))
     user_answer = get_user_input()
@@ -174,7 +191,7 @@ def start_chapter(number_of_stage, stagedata, skillset):
         skillset = other_options(skillset, number_of_stage, stagedata)
     return skillset
 
-0
+
 def start_game(skillset):
     stages = [1, 2, 3, 4]
     story_turn_page("story.txt", 1, skillset)
