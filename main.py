@@ -2,9 +2,18 @@ import random
 import os
 import time
 import sys
+import getch
 
-def print_isrtuctions():
-    pass
+def print_instuctions(instruction_file):
+    clear_screen()
+    with open(instruction_file) as picture:
+        for line in picture:
+            print(line, end = "")
+    return_sign = input()
+    if return_sign == "":
+        printing_menu()
+    
+
 
 def print_welcome_picture(file_to_print):
     with open(file_to_print) as picture:
@@ -14,18 +23,19 @@ def print_welcome_picture(file_to_print):
 
 
 def get_menu_input():
-    menu_input = input()
+    menu_input = getch.getch()
     if menu_input == "1":
         return
     elif menu_input == "2":
-        pass
+        print_instuctions("instructions.txt")
     
 
 def printing_menu():
+    clear_screen()
     print_welcome_picture("welcome_page.txt")
-    menu_options = ["Start game", "Instructions", "Credits"]
+    menu_options = ["Start game", "Instructions"]
     for i, element in enumerate(menu_options):
-        print(f"{i+1}. {element}".center(80))
+        print(f"{i+1}. {element}".center(75))
     get_menu_input()
     clear_screen()
     
