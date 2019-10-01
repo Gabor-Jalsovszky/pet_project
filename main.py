@@ -43,12 +43,14 @@ def printing_menu():
 def clear_screen():
     os.system('clear')
 
+
 def delay_print(string_to_print):
     for character in string_to_print:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.015)
     print("\n")
+
 
 def show_stats(skillset):
     for key, value in skillset.items():
@@ -70,9 +72,7 @@ def get_basic_skill_values():
     delay_print("\nYour starting Programming skills is 1. Don't worry, it gets better with practice!\n")
     delay_print("To set your starting Stamina, you have to roll twice. We will add 12 to your result.\n")
     first_roll = roll_dice()
-    clear_screen()
     second_roll = roll_dice()
-    clear_screen()
     starting_stamina = first_roll + second_roll + 12
     delay_print(f"\nYour starting Stamina is {starting_stamina}.\n")
     delay_print("To set your starting Team spirit, you have to roll once.\n")
@@ -81,7 +81,7 @@ def get_basic_skill_values():
     starting_team_spirit = team_spirit_roll
     skillset = {"Programming skills" : 1, "Stamina" : starting_stamina, "Team spirit" : starting_team_spirit}
     show_stats(skillset)
-    time.sleep(5)
+    time.sleep(3)
     return skillset
 
 
@@ -91,7 +91,7 @@ def story_turn_page(filename, startline, skillset):
     return lines[startline - 1]
 
 
-def other_options(skillset, number_of_stage):
+def other_options(skillset, number_of_stage, stagedata):
     clear_screen()
     delay_print("To do a dojo excercise, press 1.")
     delay_print("To start working on a project, press 2.")
@@ -100,9 +100,11 @@ def other_options(skillset, number_of_stage):
     user_input = input("Enter 1, 2, 3 or 4: ")
     if user_input == "1":
         stamina_check = skills_check(skillset, "Stamina", 14)
-        if stamina_check == "True":
+        if stamina_check == True:
             skillset = modify_statpoint("Programming skills", 1, skillset)
             skillset = modify_statpoint("Stamina", -1, skillset)
+            clear_screen()
+    start_chapter(number_of_stage, stagedata, skillset)
     return skillset
 
 
@@ -124,13 +126,11 @@ def modify_statpoint(skill, modifier, skillset):
     if modifier == 1:
         skillset[skill] += 1
         delay_print(f"Nice job! Your {skill} will increase by 1.\n")
-        time.sleep(4)
-        clear_screen()
+        time.sleep(2)
     elif modifier == -1:
         skillset[skill] -= 1
-        delay_print(f"That's not very nice. Your {skill} will decrease by 1.\n")
-        time.sleep(4)
-        clear_screen()
+        delay_print(f"Your {skill} will decrease by 1.\n")
+        time.sleep(2)
     show_stats(skillset)
     return skillset
 
@@ -160,6 +160,8 @@ def modifying(number_of_stage, user_answer, skillset):
 def start_chapter(number_of_stage, stagedata, skillset):
     startline = (stagedata[number_of_stage - 1]) 
     print("\n")
+    time.sleep(3)
+    clear_screen()
     delay_print(story_turn_page("story.txt", number_of_stage, skillset))
     user_answer = get_user_input()
     time.sleep(1)
@@ -169,10 +171,10 @@ def start_chapter(number_of_stage, stagedata, skillset):
     elif user_answer == "2":
         skillset = modifying(number_of_stage, user_answer, skillset)
     elif user_answer == "3":
-        skillset = other_options(skillset, number_of_stage - 1)
+        skillset = other_options(skillset, number_of_stage, stagedata)
     return skillset
 
-
+0
 def start_game(skillset):
     stages = [1, 2, 3, 4]
     story_turn_page("story.txt", 1, skillset)
