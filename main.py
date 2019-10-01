@@ -14,8 +14,12 @@ def try_pa(skillset):
         time.sleep(5)
         exit()
     elif skill_check == False:
-        delay_print("\033[11;31mYou are not prepared\033[0;37m")
-        time.sleep(2)
+        delay_print("You have tried it, but ... ")
+        time.sleep(1)
+        delay_print("\033[1;31mYou are not prepared!")
+        time.sleep(2)        
+        delay_print("Your programming skills are not good enough ... Yet \033[0;37m")
+        time.sleep(3)
 
 
 def print_instuctions(instruction_file):
@@ -76,7 +80,7 @@ def roll_dice():
         x = input("Press enter to roll: ")
     dice_result = random.randrange(1, 7)
     print(f"Your roll: {dice_result}")
-    time.sleep(2)
+    time.sleep(1)
     return dice_result
 
 
