@@ -121,14 +121,13 @@ def other_options(skillset, number_of_stage, stagedata):
             delay_print(" or do some excercise) before you do a Dojo!")
             time.sleep(5)
     elif user_input == "2":
-        team_spirit_check = skills_check(skillset, "Team spirit", 1)
+        team_spirit_check = skills_check(skillset, "Team spirit", 7)
         if team_spirit_check == True:
             skillset = modify_statpoint("Programming skills", 1, 3, skillset)
-    clear_screen()
-            skillset = modify_statpoint("Programming skills", 1, skillset)
-            skillset = modify_statpoint("Stamina", -1, skillset)
         else:
-            print("\033[1;31mYou are not prepared\033[0;37m")
+            delay_print("\nYou need friends to work on a project!")
+            delay_print("Try to be more social to boost your team spirit!")
+            time.sleep(4)
         clear_screen()
     if user_input == "3":
         try_pa(skillset)
