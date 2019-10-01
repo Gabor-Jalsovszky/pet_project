@@ -2,6 +2,43 @@ import random
 import os
 import time
 import sys
+import getch
+
+def print_instuctions(instruction_file):
+    clear_screen()
+    with open(instruction_file) as picture:
+        for line in picture:
+            print(line, end = "")
+    return_sign = input()
+    if return_sign == "":
+        printing_menu()
+    
+
+
+def print_welcome_picture(file_to_print):
+    with open(file_to_print) as picture:
+        for line in picture:
+            print(line, end = "")
+    print("\n")
+
+
+def get_menu_input():
+    menu_input = getch.getch()
+    if menu_input == "1":
+        return
+    elif menu_input == "2":
+        print_instuctions("instructions.txt")
+    
+
+def printing_menu():
+    clear_screen()
+    print_welcome_picture("welcome_page.txt")
+    menu_options = ["Start game", "Instructions"]
+    for i, element in enumerate(menu_options):
+        print(f"{i+1}. {element}".center(75))
+    get_menu_input()
+    clear_screen()
+    
 
 def clear_screen():
     os.system('clear')
@@ -75,7 +112,7 @@ def get_user_input():
     RED = '\033[0;31m'
     CYAN = '\033[0;36m'
 
-    delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN}1{WHITE}.")
+    delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN} 1{WHITE}.")
     delay_print(f"If your answer is {RED}No{WHITE}, press {RED}2{WHITE}.")
     delay_print(f"For other options, press {CYAN}3{WHITE}.")
     user_input = input("Enter 1, 2 or 3: ")
@@ -152,6 +189,7 @@ def skills_check(skillset, required_skill, required_min_skill):
 
 
 def main():
+    printing_menu()
     player_skillset = get_basic_skill_values()
     clear_screen()
     player_skillset = start_game(player_skillset)
