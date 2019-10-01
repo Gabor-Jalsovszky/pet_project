@@ -18,7 +18,8 @@ def try_pa(skillset):
         time.sleep(1)
         delay_print("\033[1;31mYou are not prepared!")
         time.sleep(2)        
-        delay_print("Your programming skills are not good enough ... Yet \033[0;37m")
+        delay_print("Your programming skills are not good enough ...") 
+        delay_print("Yet ... Keep working \033[0;37m")
         time.sleep(3)
 
 
@@ -60,6 +61,7 @@ def printing_menu():
 def clear_screen():
     os.system('clear')
 
+
 def delay_print(string_to_print):
     for character in string_to_print:
         sys.stdout.write(character)
@@ -67,9 +69,19 @@ def delay_print(string_to_print):
         time.sleep(0.015)
     print("\n")
 
+
 def show_stats(skillset):
+    print("\n")
+    width = 22
+    print("/", end="")
+    print(f"-"*width, end="")
+    print("\\")
     for key, value in skillset.items():
-        print(str(key) + ": " + str(value))
+        print(f"|{key}: ", end="")
+        print(f"{value}|".rjust(21-len(key)))
+    print("\\", end="")
+    print(f"-"*width, end="")
+    print("/")
 
 
 def roll_dice():
@@ -110,7 +122,7 @@ def other_options(skillset, number_of_stage, stagedata):
     delay_print("To do a dojo excercise, press 1.")
     delay_print("To start working on a project, press 2.")
     delay_print("To try passing the Progbasics PA, press 3.")
-    user_input = input("Enter 1, 2, 3 or 4: ")
+    user_input = input("Enter 1, 2, or 3: ")
     if user_input == "1":
         stamina_check = skills_check(skillset, "Stamina", 14)
         if stamina_check == True:
@@ -121,13 +133,14 @@ def other_options(skillset, number_of_stage, stagedata):
             delay_print(" or do some excercise) before you do a Dojo!")
             time.sleep(5)
     elif user_input == "2":
-        team_spirit_check = skills_check(skillset, "Team spirit", 7)
+        team_spirit_check = skills_check(skillset, "Team spirit", 1)
         if team_spirit_check == True:
             skillset = modify_statpoint("Programming skills", 1, 3, skillset)
+    
+            skillset = modify_statpoint("Programming skills", 1, skillset)
+            skillset = modify_statpoint("Stamina", -1, skillset)
         else:
-            delay_print("\nYou need friends to work on a project!")
-            delay_print("Try to be more social to boost your team spirit!")
-            time.sleep(4)
+            print("\033[1;31mYou are not prepared\033[0;37m")
         clear_screen()
     if user_input == "3":
         try_pa(skillset)
@@ -158,7 +171,7 @@ def modify_statpoint(skill, modifier, amount, skillset):
         clear_screen()
     elif modifier == -1:
         skillset[skill] -= amount
-        delay_print(f"That's not very nice. Your {skill} will decrease by {amount}.\n")
+        delay_print(f"Your {skill} will decrease by {amount}.\n")
         time.sleep(4)
         clear_screen()
     show_stats(skillset)
