@@ -57,10 +57,11 @@ def print_instuctions(instruction_file):
     
 
 def print_welcome_picture(file_to_print):
+    print("\033[0;33m")
     with open(file_to_print) as picture:
         for line in picture:
             print(line, end = "")
-    print("\n")
+    print("\033[0;37m\n")
 
 
 def get_menu_input():
