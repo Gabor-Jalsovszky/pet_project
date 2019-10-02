@@ -2,5 +2,7 @@ You are at the main entrance. A fellow Codecooler from your class can not open t
 It's 9:30 AM, right after the attendance. The mentors tell you to do some dojos for the next hour. Will you take the opportunity to practice?
 Coffee break! Would you like to get some?
 Coffee break is over. Let's do some project work.
+Another workshop is coming. It's a good opportunity to learn about Pair programming. Will you join?
+Another stage
 
 Testset)

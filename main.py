@@ -5,7 +5,7 @@ import sys
 import getch
 
 def try_pa(skillset):
-    skill_check = skills_check(skillset, "Programming skills", 2)
+    skill_check = skills_check(skillset, "Programming skills", 51)
     clear_screen()
     if skill_check == True:
         with open("winning_page.txt") as picture:
@@ -95,7 +95,7 @@ def delay_print(string_to_print):
 
 
 def show_stats(skillset):
-    print("\n")
+    print("\n\033[0;32m")
     width = 22
     print("/", end="")
     print(f"-"*width, end="")
@@ -105,7 +105,7 @@ def show_stats(skillset):
         print(f"{value}|".rjust(21-len(key)))
     print("\\", end="")
     print(f"-"*width, end="")
-    print("/")
+    print("/\033[0;37m")
 
 
 def roll_dice():
@@ -143,6 +143,7 @@ def story_turn_page(filename, startline, skillset):
 
 def other_options(skillset, number_of_stage, stagedata):
     clear_screen()
+    delay_print("\033[1;32m Quests: \n\033[0;37m")
     delay_print("To do a dojo excercise, press 1.")
     delay_print("To start working on a project, press 2.")
     delay_print("To try passing the Progbasics PA, press 3.")
@@ -183,7 +184,6 @@ def modify_statpoint(skill, modifier, amount, skillset):
         delay_print(f"Your {skill} will decrease by {amount}.\n")
         time.sleep(4)
         clear_screen()
-    show_stats(skillset)
     time.sleep(1)
     return skillset
 
@@ -205,14 +205,21 @@ def modifying(number_of_stage, user_answer, skillset):
     if number_of_stage == 4 and user_answer == "1":
         skillset = modify_statpoint("Programming skills", 1, 1, skillset)
     elif number_of_stage == 4 and user_answer == "2":
-        print(f"You should have shaprened your skills in Python!")
+        delay_print("\nYou should have shaprened your skills in Python!")
+        time.sleep(2)
+    if number_of_stage == 5 and user_answer == "1":
+        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+    elif number_of_stage == 5 and user_answer == "2":
+        delay_print("\nPoor you! It was a really great workshop, and you have missed it.")
     return skillset
 
 
 def start_chapter(number_of_stage, stagedata, skillset):
     startline = (stagedata[number_of_stage - 1]) 
-    print("\n")
     clear_screen()
+    show_stats(skillset)
+    print("\n")
     delay_print(story_turn_page("story.txt", number_of_stage, skillset))
     user_answer = get_user_input()
     time.sleep(1)
@@ -227,7 +234,7 @@ def start_chapter(number_of_stage, stagedata, skillset):
 
 
 def start_game(skillset):
-    stages = [1, 2, 3, 4]
+    stages = [1, 2, 3, 4, 5, 6]
     story_turn_page("story.txt", 1, skillset)
     for stage_number in stages:
         skillset = start_chapter(stage_number, stages, skillset)
