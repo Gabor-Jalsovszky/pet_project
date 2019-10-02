@@ -149,19 +149,7 @@ def other_options(skillset, number_of_stage, stagedata):
     if user_input == "1":
         skillset = do_dojo(skillset)
     elif user_input == "2":
-<<<<<<< HEAD
-        team_spirit_check = skills_check(skillset, "Team spirit", 1)
-        if team_spirit_check == True:
-            skillset = modify_statpoint("Programming skills", 1, 3, skillset)
-    
-            skillset = modify_statpoint("Programming skills", 1, skillset)
-            skillset = modify_statpoint("Stamina", -1, skillset)
-        else:
-            print("\033[1;31mYou are not prepared\033[0;37m")
-        clear_screen()
-=======
         skillset = work_on_project(skillset)
->>>>>>> 7bc3f1cff12410208f2b51c066825d4bcb042363
     if user_input == "3":
         try_pa(skillset)
 
