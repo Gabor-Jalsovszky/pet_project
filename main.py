@@ -9,6 +9,9 @@ def try_pa(skillset):
     skill_check = skills_check(skillset, "Programming skills", 5)
     clear_screen()
     if skill_check == True:
+        delay_print("60 minutes is passing by so quickly")
+        time.sleep(2)
+        clear_screen()
         with open("winning_page.txt") as picture:
             for line in picture:
                 print(line, end="")
@@ -18,6 +21,8 @@ def try_pa(skillset):
 
         exit()
     elif skill_check == False:
+        delay_print("60 minutes is passing by so quickly")
+        time.sleep(1)
         delay_print("You have tried it, but ... ")
         time.sleep(1)
         delay_print("\033[1;31mYou are not prepared!")
