@@ -230,7 +230,7 @@ def modify_statpoint(skill, modifier, amount, skillset):
         clear_screen()
     elif modifier == -1:
         skillset[skill] += amount
-        delay_print(f"Your {skill} will decrease by {amount}.\n")
+        delay_print(f"Your {skill} will decrease by {abs(amount)}.\n")
         time.sleep(4)
         clear_screen()
     time.sleep(1)
