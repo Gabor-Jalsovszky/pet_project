@@ -8,9 +8,11 @@
 \                                                                      /
 /                    2. Choose your answers wisely!                    \
 \                                                                      /
-/                           3. Eat nachos                              \
+/                          3. Be a champion                            \
+\                                                                      /
+/                           4. Eat nachos                              \
 \                     (Optional, but recommended)                      /
 /                                                                      \ 
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 
-                  Press Enter to return to the main menu
+                Press Enter to return to the Main menu

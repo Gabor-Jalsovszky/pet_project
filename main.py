@@ -31,7 +31,7 @@ def ask_dojo_question():
 
 
 def try_pa(skillset):
-    skill_check = skills_check(skillset, "Programming skills", 1)
+    skill_check = skills_check(skillset, "Programming skills", 5)
     clear_screen()
     if skill_check == True:
         delay_print("60 minutes is passing by so quickly")
@@ -115,7 +115,7 @@ def printing_menu():
     print_welcome_picture("welcome_page.txt")
     menu_options = ["Start game", "Instructions"]
     for i, element in enumerate(menu_options):
-        print(f"{i+1}. {element}".center(75))
+        print(f"{i+1}. {element}".center(94))
     get_menu_input()
     clear_screen()
     

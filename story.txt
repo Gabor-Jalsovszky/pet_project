@@ -4,5 +4,3 @@ Coffee break! Would you like to get some?
 Some students and mentors are going to play frisbee at the park in the afternoon. Would you like to join them?
 Another workshop is coming. It's a good opportunity to learn about Pair programming. Will you join?
 Another stage
-
-Testset)
