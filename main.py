@@ -229,7 +229,7 @@ def modify_statpoint(skill, modifier, amount, skillset):
         time.sleep(4)
         clear_screen()
     elif modifier == -1:
-        skillset[skill] -= amount
+        skillset[skill] += amount
         delay_print(f"Your {skill} will decrease by {amount}.\n")
         time.sleep(4)
         clear_screen()
@@ -244,6 +244,7 @@ def modifying(number_of_stage, user_answer, skillset):
         skillset = modify_statpoint("Team spirit", -1, -1, skillset)
     if number_of_stage == 2 and user_answer == "1":
         skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
     elif number_of_stage == 2 and user_answer == "2":
         skillset = modify_statpoint("Programming skills", -1, -1, skillset)
     if number_of_stage == 3 and user_answer == "1":
@@ -252,10 +253,12 @@ def modifying(number_of_stage, user_answer, skillset):
     elif number_of_stage == 3 and user_answer == "2":
         skillset = modify_statpoint("Team spirit", -1, -1, skillset)
     if number_of_stage == 4 and user_answer == "1":
-        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+        skillset = modify_statpoint("Stamina", 1, 2, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
     elif number_of_stage == 4 and user_answer == "2":
-        delay_print("\nYou should have shaprened your skills in Python!")
+        delay_print("\nYou missed am awesome opportunity to socialize with other codecoolers and to boost your stamina. :(")
         time.sleep(2)
+        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
     if number_of_stage == 5 and user_answer == "1":
         skillset = modify_statpoint("Programming skills", 1, 1, skillset)
         skillset = modify_statpoint("Team spirit", 1, 1, skillset)

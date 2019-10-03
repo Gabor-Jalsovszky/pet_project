@@ -1,7 +1,7 @@
 You are at the main entrance. A fellow Codecooler from your class can not open the door. Will you let him in?
-It's 9:30 AM, right after the attendance. The mentors tell you to do some dojos for the next hour. Will you take the opportunity to practice?
+A student from 3rd TW week asks help for the 'Hundred doors' dojo. Will you help him?
 Coffee break! Would you like to get some?
-Coffee break is over. Let's do some project work.
+Some students and mentors are going to play frisbee at the park in the afternoon. Would you like to join them?
 Another workshop is coming. It's a good opportunity to learn about Pair programming. Will you join?
 Another stage
 
