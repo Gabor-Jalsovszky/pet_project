@@ -5,8 +5,11 @@ import sys
 import getch
 from playsound import playsound
 
+def ask_dojo_question():
+    pass
+
 def try_pa(skillset):
-    skill_check = skills_check(skillset, "Programming skills", 5)
+    skill_check = skills_check(skillset, "Programming skills", 1)
     clear_screen()
     if skill_check == True:
         delay_print("60 minutes is passing by so quickly")
@@ -17,8 +20,6 @@ def try_pa(skillset):
                 print(line, end="")
             playsound('queen.mp3')      
         time.sleep(10)
-
-
         exit()
     elif skill_check == False:
         delay_print("60 minutes is passing by so quickly")
@@ -156,7 +157,13 @@ def other_options(skillset, number_of_stage, stagedata):
     delay_print("To do a dojo excercise, press 1.")
     delay_print("To start working on a project, press 2.")
     delay_print("To try passing the Progbasics PA, press 3.")
-    user_input = input("Enter 1, 2, or 3: ")
+    invalid_input = True
+    valid_inputs = ["1", "2", "3"]
+    while invalid_input:
+        user_input = input("Enter 1, 2 or 3: ")
+        if user_input in valid_inputs:
+            invalid_input = False
+        else: delay_print("You can choose only from 1, 2 or 3")
     if user_input == "1":
         skillset = do_dojo(skillset)
     elif user_input == "2":
@@ -177,7 +184,13 @@ def get_user_input():
     delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN} 1{WHITE}.")
     delay_print(f"If your answer is {RED}No{WHITE}, press {RED}2{WHITE}.")
     delay_print(f"For other options, press {CYAN}3{WHITE}.")
-    user_input = input("Enter 1, 2 or 3: ")
+    invalid_input = True
+    valid_inputs = ["1", "2", "3"]
+    while invalid_input:
+        user_input = input("Enter 1, 2 or 3: ")
+        if user_input in valid_inputs:
+            invalid_input = False
+        else: delay_print("You can choose only from 1, 2 or 3")
     return user_input
 
 
