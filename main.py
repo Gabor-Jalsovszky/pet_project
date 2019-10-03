@@ -3,15 +3,19 @@ import os
 import time
 import sys
 import getch
+from playsound import playsound
 
 def try_pa(skillset):
-    skill_check = skills_check(skillset, "Programming skills", 51)
+    skill_check = skills_check(skillset, "Programming skills", 5)
     clear_screen()
     if skill_check == True:
         with open("winning_page.txt") as picture:
             for line in picture:
                 print(line, end="")
-        time.sleep(5)
+            playsound('queen.mp3')      
+        time.sleep(10)
+
+
         exit()
     elif skill_check == False:
         delay_print("You have tried it, but ... ")
@@ -21,6 +25,7 @@ def try_pa(skillset):
         delay_print("Your programming skills are not good enough ...") 
         delay_print("Yet ... Keep working \033[0;37m")
         time.sleep(3)
+
 
 def do_dojo(skillset):
     stamina_check = skills_check(skillset, "Stamina", 14)
@@ -130,8 +135,7 @@ def get_basic_skill_values():
     team_spirit_roll = roll_dice()
     starting_team_spirit = team_spirit_roll
     skillset = {"Programming skills" : 1, "Stamina" : starting_stamina, "Team spirit" : starting_team_spirit}
-    show_stats(skillset)
-    time.sleep(5)
+    time.sleep(2)
     return skillset
 
 
