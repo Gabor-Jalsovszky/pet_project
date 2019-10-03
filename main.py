@@ -6,7 +6,29 @@ import getch
 from playsound import playsound
 
 def ask_dojo_question():
-    pass
+    clear_screen()
+    delay_print("\nYou are doing a string-based dojo. What will print the following expression?")
+    delay_print("\n\033[1;37mdojo_word = 'basics'")
+    delay_print("print(dojo_word[-5:-2] == dojo_word[1:4])\033[0;37m\n")
+    GREEN = '\033[1;32m'
+    WHITE = '\033[0;37m'
+    RED = '\033[1;31m'
+    BLUE = '\033[1;34m'
+
+    delay_print(f"If your answer is {GREEN}True{WHITE}, press{GREEN} 1{WHITE}.")
+    delay_print(f"If your answer is {RED}False{WHITE}, press {RED}2{WHITE}.")
+    invalid_input = True
+    valid_inputs = ["1", "2"]
+    while invalid_input:
+        user_input = input("Enter 1 or 2: ")
+        if user_input in valid_inputs:
+            invalid_input = False
+        else: delay_print("You can choose only from 1 or 2")
+    if user_input == "1":
+        return True
+    elif user_input == "2":
+        return False
+
 
 def try_pa(skillset):
     skill_check = skills_check(skillset, "Programming skills", 1)
@@ -36,8 +58,13 @@ def try_pa(skillset):
 def do_dojo(skillset):
     stamina_check = skills_check(skillset, "Stamina", 14)
     if stamina_check == True:
-        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
-        skillset = modify_statpoint("Stamina", -1, -1, skillset)
+        dojo_answer = ask_dojo_question()
+        if dojo_answer == True:
+            skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+            skillset = modify_statpoint("Stamina", -1, -1, skillset)
+        elif dojo_answer == False:
+            delay_print("\nWrong answer. Never mind, you will be better next time")
+            time.sleep(2)
     else:
         delay_print("Your Stamina is too low. Try to increase it (have a coffee", end="")
         delay_print(" or do some excercise) before you do a Dojo!")
@@ -176,10 +203,10 @@ def other_options(skillset, number_of_stage, stagedata):
 
 
 def get_user_input():
-    GREEN = '\033[0;32m'
+    GREEN = '\033[1;32m'
     WHITE = '\033[0;37m'
-    RED = '\033[0;31m'
-    CYAN = '\033[0;36m'
+    RED = '\033[1;31m'
+    CYAN = '\033[1;36m'
 
     delay_print(f"If your answer is {GREEN}Yes{WHITE}, press{GREEN} 1{WHITE}.")
     delay_print(f"If your answer is {RED}No{WHITE}, press {RED}2{WHITE}.")
