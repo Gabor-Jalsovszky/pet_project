@@ -5,12 +5,23 @@ import sys
 import getch
 from playsound import playsound
 
+def get_other_options_input():
+    invalid_input = True
+    valid_inputs = ["1", "2", "3"]
+    while invalid_input:
+        user_input = input("Enter 1, 2 or 3: ")
+        if user_input in valid_inputs:
+            invalid_input = False
+        else: delay_print("You can choose only from 1, 2 or 3")
+    return user_input
+
 def modifying_chapter1(number_of_stage, user_answer, skillset):
     if user_answer == "1":
         skillset = modify_statpoint("Team spirit", 1, 1, skillset)
     elif user_answer == "2":
         skillset = modify_statpoint("Team spirit", -1, -1, skillset)
     return skillset
+
 
 def modifying_chapter2(number_of_stage, user_answer, skillset):
     if user_answer == "1":
@@ -19,6 +30,7 @@ def modifying_chapter2(number_of_stage, user_answer, skillset):
     elif user_answer == "2":
         skillset = modify_statpoint("Programming skills", -1, -1, skillset)
     return skillset
+
 
 def modifying_chapter3(number_of_stage, user_answer, skillset):
     if user_answer == "1":
@@ -226,22 +238,16 @@ def story_turn_page(filename, startline, skillset):
 
 def other_options(skillset, number_of_stage, stagedata):
     clear_screen()
-    delay_print("\033[1;32m Quests: \n\033[0;37m")
-    delay_print("To do a dojo excercise, press 1.")
-    delay_print("To start working on a project, press 2.")
-    delay_print("To try passing the Progbasics PA, press 3.")
-    invalid_input = True
-    valid_inputs = ["1", "2", "3"]
-    while invalid_input:
-        user_input = input("Enter 1, 2 or 3: ")
-        if user_input in valid_inputs:
-            invalid_input = False
-        else: delay_print("You can choose only from 1, 2 or 3")
+    menu_header = "\033[1;32m Quests: \n\033[0;37m" 
+    other_options_menu = [menu_header, "To do a dojo excercise, press 1." , "To start working on a project, press 2.", "To try passing the Progbasics PA, press 3."]
+    for menu_item in other_options_menu:
+        delay_print(menu_item)
+    user_input = get_other_options_input()
     if user_input == "1":
         skillset = do_dojo(skillset)
     elif user_input == "2":
         skillset = work_on_project(skillset)
-    if user_input == "3":
+    elif user_input == "3":
         try_pa(skillset)
 
     start_chapter(number_of_stage + 1, stagedata, skillset)
