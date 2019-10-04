@@ -199,7 +199,7 @@ def other_options(skillset, number_of_stage, stagedata):
     if user_input == "3":
         try_pa(skillset)
 
-    start_chapter(number_of_stage, stagedata, skillset)
+    start_chapter(number_of_stage + 1, stagedata, skillset)
     return skillset
 
 
@@ -264,6 +264,7 @@ def modifying(number_of_stage, user_answer, skillset):
         skillset = modify_statpoint("Team spirit", 1, 1, skillset)
     elif number_of_stage == 5 and user_answer == "2":
         delay_print("\nPoor you! It was a really great workshop, and you have missed it.")
+        time.sleep(2)
     return skillset
 
 
