@@ -3,4 +3,5 @@ A student from 3rd TW week asks help for the 'Hundred doors' dojo. Will you help
 Coffee break! Would you like to get some?
 Some students and mentors are going to play frisbee at the park in the afternoon. Would you like to join them?
 Another workshop is coming. It's a good opportunity to learn about Pair programming. Will you join?
-Another stage
+Winter is coming! Will you turn on the air-conditioner?
+

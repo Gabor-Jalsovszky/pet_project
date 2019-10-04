@@ -75,6 +75,7 @@ def do_dojo(skillset):
 def work_on_project(skillset):
     team_spirit_check = skills_check(skillset, "Team spirit", 1)
     if team_spirit_check == True:
+        delay_print("\n\033[1;37mYou seriously rocked this project thing.\033[0;37m")
         skillset = modify_statpoint("Programming skills", 1, 3, skillset)
     else:
         delay_print("\nYou need friends to work on a project!")
@@ -233,7 +234,6 @@ def modify_statpoint(skill, modifier, amount, skillset):
         delay_print(f"Your {skill} will decrease by {abs(amount)}.\n")
         time.sleep(4)
         clear_screen()
-    time.sleep(1)
     return skillset
 
 
