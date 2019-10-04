@@ -5,6 +5,51 @@ import sys
 import getch
 from playsound import playsound
 
+def modifying_chapter1(number_of_stage, user_answer, skillset):
+    if user_answer == "1":
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+    elif user_answer == "2":
+        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
+    return skillset
+
+def modifying_chapter2(number_of_stage, user_answer, skillset):
+    if user_answer == "1":
+        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+    elif user_answer == "2":
+        skillset = modify_statpoint("Programming skills", -1, -1, skillset)
+    return skillset
+
+def modifying_chapter3(number_of_stage, user_answer, skillset):
+    if user_answer == "1":
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+        skillset = modify_statpoint("Stamina", 1, 1, skillset)
+    elif user_answer == "2":
+        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
+        return skillset
+
+
+def modifying_chapter4(number_of_stage, user_answer, skillset):
+    if user_answer == "1":
+        skillset = modify_statpoint("Stamina", 1, 2, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+    elif user_answer == "2":
+        delay_print("\nYou missed am awesome opportunity to socialize with other codecoolers and to boost your stamina. :(")
+        time.sleep(2)
+        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
+    return skillset
+
+
+def modifying_chapter5(number_of_stage, user_answer, skillset):
+    if user_answer == "1":
+        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
+        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
+    elif user_answer == "2":
+        delay_print("\nPoor you! It was a really great workshop, and you have missed it.")
+        time.sleep(2)
+    return skillset
+
+
 def ask_dojo_question():
     clear_screen()
     delay_print("\nYou are doing a string-based dojo. What will print the following expression?")
@@ -237,34 +282,17 @@ def modify_statpoint(skill, modifier, amount, skillset):
     return skillset
 
 
-def modifying(number_of_stage, user_answer, skillset):
-    if number_of_stage == 1 and user_answer == "1":
-        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
-    elif number_of_stage == 1 and user_answer == "2":
-        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
-    if number_of_stage == 2 and user_answer == "1":
-        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
-        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
-    elif number_of_stage == 2 and user_answer == "2":
-        skillset = modify_statpoint("Programming skills", -1, -1, skillset)
-    if number_of_stage == 3 and user_answer == "1":
-        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
-        skillset = modify_statpoint("Stamina", 1, 1, skillset)
-    elif number_of_stage == 3 and user_answer == "2":
-        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
-    if number_of_stage == 4 and user_answer == "1":
-        skillset = modify_statpoint("Stamina", 1, 2, skillset)
-        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
-    elif number_of_stage == 4 and user_answer == "2":
-        delay_print("\nYou missed am awesome opportunity to socialize with other codecoolers and to boost your stamina. :(")
-        time.sleep(2)
-        skillset = modify_statpoint("Team spirit", -1, -1, skillset)
-    if number_of_stage == 5 and user_answer == "1":
-        skillset = modify_statpoint("Programming skills", 1, 1, skillset)
-        skillset = modify_statpoint("Team spirit", 1, 1, skillset)
-    elif number_of_stage == 5 and user_answer == "2":
-        delay_print("\nPoor you! It was a really great workshop, and you have missed it.")
-        time.sleep(2)
+def modifying(number_of_stage, user_answer, skillset):  
+    if number_of_stage == 1:
+        modifying_chapter1(number_of_stage, user_answer, skillset)
+    elif number_of_stage == 2:
+        modifying_chapter2(number_of_stage, user_answer, skillset)
+    elif number_of_stage == 3:
+        modifying_chapter3(number_of_stage, user_answer, skillset)
+    elif number_of_stage == 4:
+        modifying_chapter4(number_of_stage, user_answer, skillset)
+    elif number_of_stage == 5:
+        modifying_chapter5(number_of_stage, user_answer, skillset)
     return skillset
 
 
